@@ -5,8 +5,6 @@ Copyright (c) Facebook, Inc. and its affiliates.
 This source code is licensed under the MIT license.
 """
 import os
-job_id = os.environ['LSB_JOBID']
-
 import pathlib
 from argparse import ArgumentParser
 
@@ -90,7 +88,7 @@ def build_args():
 
     # set defaults based on optional directory config
     data_path = fetch_dir("brain_path", path_config)
-    default_root_dir = fetch_dir("log_path", path_config) / job_id / "varnet" / "varnet_demo" #
+    default_root_dir = fetch_dir("log_path", path_config) / "varnet" / "varnet_demo" #
 
     # client arguments
     parser.add_argument(

@@ -369,7 +369,7 @@ if __name__ == '__main__':
     parser.add_argument('--save_dir', type=str, default='./data/save/')
 
     args = parser.parse_args()
-    name = job_id + '_CNNae_'
+    name = '_CNNae_'
     Nx, Ny = 320, 320
     train_datapath = args.train_datapath
     val_datapath= args.val_datapath

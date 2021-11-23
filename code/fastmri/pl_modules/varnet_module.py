@@ -121,7 +121,7 @@ class VarNetModule(MriModule):
                     # loss += self.loss(rec_c.unsqueeze(1), target.unsqueeze(1), data_range=batch.max_value) * (np.exp(i-len(output))/np.exp(1-len(output)))
 
                     target, rec_c = transforms.center_crop_to_smallest(batch.target_kspace, el)
-                    print(el.shape, batch.target_kspace.shape)
+
                     loss += torch.mean((el - batch.target_kspace)**2 * (np.exp(i-len(output))))
         else:
             target, output = transforms.center_crop_to_smallest(batch.target, output)
@@ -158,7 +158,7 @@ class VarNetModule(MriModule):
 
     def test_step(self, batch, batch_idx):
         output = self(batch.masked_kspace, batch.mask, batch.num_low_frequencies)
-        
+
         if self.exp_loss:
            output = fastmri.rss(fastmri.complex_abs(fastmri.ifft2c(output[-1])), dim=1)
 
